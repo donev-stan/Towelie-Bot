@@ -1,0 +1,26 @@
+{
+  "name": "Towelie-Bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donev-stan/Towelie-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donev-stan/Towelie-Bot/issues"
+  },
+  "homepage": "https://github.com/donev-stan/Towelie-Bot#readme",
+  "dependencies": {
+    "@replit/database": "^2.0.1",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
