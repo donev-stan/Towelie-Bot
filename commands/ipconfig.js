@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 
 module.exports = {
   name: "ipconfig",
+  cooldown: 180,
   description: "Towelie tells your ip address.",
   execute (client, message, args) {
     whatsMyIP().then(ip => message.reply(`Your ip address is ${ip}`));
