@@ -1,28 +1,22 @@
-const fetch = require("node-fetch");
+const cooldowns = new Map();
 
 module.exports = (Discord, client, msg) => {
   const prefix = "!";
+  if (!msg.content.startsWith(prefix) || msg.author.bot) return;
 
-  if (msg.author.bot) return;
+  const args = msg.content.slice(prefix.length).split(/ +/);
+  const cmd = args.shift().toLowerCase(); 
 
-  if (msg.content.startsWith(prefix)) {
-    const args = msg.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase(); 
+  const command = (client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd)));
 
-    if (command) {
-      client.commands.get(`${command}`).execute(client, msg, args, Discord);
-    }
+  
 
-  } else {
-    if (msg.content.trim().toLowerCase() === "hi towelie") {
-      const newEmbed = new Discord.MessageEmbed().setColor('#304281').setTitle('You wanna get high?').setURL('https://tenor.com/view/south-park-wann-get-high-towelie-gif-9114425').setImage('https://tenor.com/view/south-park-wann-get-high-towelie-gif-9114425');
-
-      msg.channel.send(newEmbed);
-      // msg.reply("https://tenor.com/view/south-park-wann-get-high-towelie-gif-9114425");
-    }
-
-    if (msg.content.trim().toLowerCase().split(" ").includes("high")) {
-      msg.reply("https://tenor.com/view/dont-forget-to-bring-a-towel-towelie-south-park-take-a-towel-dont-forget-gif-22089251");
-    }
+  try {
+    // if (command) command.execute(client, msg, args, Discord);
+    // command.execute(msg, args, cmd, client, Discord);
+    command.execute(client, msg, args, Discord);
+  } catch (error) {
+    msg.channel.send('https://tenor.com/view/south-park-towelie-no-idea-gif-15446391');
+    console.log(error);
   }
 }
